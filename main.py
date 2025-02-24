@@ -12,7 +12,7 @@ def login():
     body = request.get_json()
     try:
         session = sa.login(body['username'], body['password'])
-    except sa.exceptions.LoginFailure:
+    except sa.utils.exceptions.LoginFailure:
         return jsonify({'success': False, 'error': 'Login failed'}), 401
     return jsonify({'success': True, 'session': session.id, 'username': session.username})
 
