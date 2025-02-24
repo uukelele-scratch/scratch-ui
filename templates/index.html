@@ -20,8 +20,49 @@
         </div>
     </body>
     <script>
-        function login() {
-            alert("Login not yet implemented.");    
+        async function login() {
+            const response = await fetch('/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    username: document.getElementById('username').value,
+                    password: document.getElementById('password').value
+                })
+            });
+            const data = await response.json();
+            console.log(data);
+            if (data.success) {
+                setCookie("session", data.session, 7);
+                setCookie("username", data.username, 7);
+            } else {
+                console.error(data.error);
+                alert('Invalid username or password');
+            }   
+        }
+
+        function setCookie(name, value, days=null) {
+            let expires = '';
+            if (days) {
+                const date = new Date();
+                date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+                expires = `; expires=${date.toUTCString()}`;
+            } else {
+                expires = '';
+            }
+            document.cookie = `${name}=${value || ''}${expires}; path=/`;
+        }
+
+        function getCookie(name) {
+            const nameEQ = `${name}=`;
+            const ca = document.cookie.split(';');
+            for (let i = 0; i < ca.length; i++) {
+                let c = ca[i];
+                while (c.charAt(0) == ' ') c = c.substring(1, c.length);
+                if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
+            }
+            return null;
         }
     </script>
 </html>
