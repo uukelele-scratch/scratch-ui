@@ -80,19 +80,22 @@ input[type="password"]:focus {
     border-radius:50px;
     padding:15px;
     margin:20px;
-    background: var(--light-blue);
+    height:32px;
+    background: var(--secondary-color);
 }
 
 .header-item-username {
     position:absolute;
     right:10px;
+    height:48px;
 }
 
 .header-item-username img {
     width:32px;
     height:32px;
     border-radius:50%;
-    margin-right:10px;
+    margin:10px;
+    margin-right:0;
 }
 
 #login {
