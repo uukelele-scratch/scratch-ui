@@ -7,6 +7,10 @@ app = Flask(__name__)
 def index():
     return render_template('index.html')
 
+@app.route('/users/<username>')
+def user(username):
+    return render_template('user.html', username=username)
+
 @app.route('/api/login', methods=['POST'])
 def login():
     body = request.get_json()

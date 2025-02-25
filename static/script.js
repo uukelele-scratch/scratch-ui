@@ -31,7 +31,7 @@ async function updateHeader() {
     username = getCookie("username")
     if (username) {
         url = await fetchUserProfile(username);
-        headerItem(username, null, url, ['header-item-username']);
+        headerItem(username, () => window.location.href = `/users/${username}`, url, ['header-item-username']);
     } else {
         url = await fetchUserProfile('default');
         headerItem('Not Logged In', null, url, ['header-item-username']);

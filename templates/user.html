@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Page</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <div id="content"></div>
+</body>
+<script src="/static/script.js"></script>
+<script>
+    async function updateUserData() {
+        const username = "{{ username }}";
+        if (getCookie("username")) {
+            if (getCookie("username") == username) {
+                method = "EDIT";
+            } else {
+                method = "CONNECT";
+            }
+        } else {
+            method = "GET";
+        }
+        if (method == "GET") {
+            const response = await fetch(`/api/users/${username}`);
+        } else if (method == "CONNECT" || method == "EDIT") {
+            const response = await fetch(`/api/users/${username}`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    "session": getCookie("session")
+                })
+            });
+        }
+        const data = await response.json();
+        if (data["status"] == "success") {
+            document.getElementById("content").innerHTML = `
+                <h1>${data["username"]}</h1>
+                <p>${data}</p>
+            `; // This is just for testing purposes, once we know it works we can actually display it properly
+        } else {
+            document.getElementById("content").innerHTML = `
+                <h1>${data["error"]}</h1>
+            `;
+        }
+    }
+</script>
+</html>
