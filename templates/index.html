@@ -5,7 +5,6 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>ScratchUI</title>
         <link rel="stylesheet" href="/static/styles.css">
-        <script src="/static/script.js"></script>
     </head>
     <body>
         <div id="header"></div>
@@ -20,94 +19,8 @@
             <button onclick="login()">Login</button>
         </div>
     </body>
+    <script src="/static/script.js"></script>
     <script>
-        async function updatePage() {
-            if (getCookie("session")) {
-                document.getElementById('login').style.display = 'none';
-            }
-            await updateHeader();
-        }
-
-        async function updateHeader() {
-            document.getElementById('header').innerHTML = '';
-            function headerItem(name, onclick=null, image=null, classList=null) {
-                element = document.createElement('div');
-                element.classList.add('header-item');
-                if (classList) {
-                    classList.forEach((c) => element.classList.add(c));
-                }
-                element.innerText = name;
-                if (image) {
-                    imageElement = document.createElement('img');
-                    imageElement.src = image;
-                    element.appendChild(imageElement);
-                }
-                element.onclick = onclick;
-                document.getElementById('header').appendChild(element);
-            }
-            headerItem('About')
-            username = getCookie("username")
-            if (username) {
-                url = await fetchUserProfile(username);
-                headerItem(username, null, url, ['header-item-username']);
-            } else {
-                url = await fetchUserProfile('default');
-                headerItem('Not Logged In', null, url, ['header-item-username']);
-            }
-        }
-
-        async function fetchUserProfile(username) {
-            const response = await fetch(`/api/profile/${username}/image`);
-            const data = await response.json();
-            return data.image;
-        }
-
-        async function login() {
-            const response = await fetch('/api/login', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    username: document.getElementById('username').value,
-                    password: document.getElementById('password').value
-                })
-            });
-            const data = await response.json();
-            console.log(data);
-            if (data.success) {
-                setCookie("session", data.session, 7);
-                setCookie("username", data.username, 7);
-                await updatePage();
-            } else {
-                console.error(data.error);
-                alert('Invalid username or password');
-            }   
-        }
-
-        function setCookie(name, value, days=null) {
-            let expires = '';
-            if (days) {
-                const date = new Date();
-                date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
-                expires = `; expires=${date.toUTCString()}`;
-            } else {
-                expires = '';
-            }
-            document.cookie = `${name}=${value || ''}${expires}; path=/`;
-        }
-
-        function getCookie(name) {
-            const nameEQ = `${name}=`;
-            const ca = document.cookie.split(';');
-            for (let i = 0; i < ca.length; i++) {
-                let c = ca[i];
-                while (c.charAt(0) == ' ') c = c.substring(1, c.length);
-                if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
-            }
-            return null;
-        }
-    
-        updatePage();
+        
     </script>
 </html>
