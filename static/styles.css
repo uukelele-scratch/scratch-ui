@@ -1,7 +1,7 @@
 :root {
     /* Blue color palette */
     --primary-color: #007BFF;
-    --header-color: #007bff6b;
+    --header-color: #57a8ff;
     --secondary-color: #0056b3;
     --light-blue: #66b2ff;
     --dark-blue: #004085;
@@ -63,7 +63,9 @@ input[type="password"]:focus {
     color: #fff;
     padding: 10px 0;
     display:flex;
+    flex-direction:row;
     justify-content: flex-start;
+    align-items:center;
     width:100%;
     height:64px;
     position:sticky;
@@ -78,11 +80,12 @@ input[type="password"]:focus {
     border-radius:50px;
     padding:15px;
     margin:20px;
+    background: var(--light-blue);
 }
 
 .header-item-username {
     position:absolute;
-    right:42px;
+    right:10px;
 }
 
 .header-item-username img {
