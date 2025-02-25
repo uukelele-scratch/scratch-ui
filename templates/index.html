@@ -8,8 +8,9 @@
         <script src="/static/script.js"></script>
     </head>
     <body>
-        <h1>ScratchUI is running</h1>
-        <p>ScratchUI is a modified client for Scratch. It's built from the ground up in Python, powered by Flask and ScratchAttach.</p>
+        <div id="header"></div>
+        </div>
+        <h1>ScratchUI</h1>
         <div id="login">
             <h2>Login</h2>
             <label for="username">Username</label>
@@ -20,8 +21,38 @@
         </div>
     </body>
     <script>
+        async function updateHeader() {
+            function headerItem(name, onclick=null, image=null) {
+                element = document.createElement('div');
+                element.classList.add('header-item');
+                element.innerText = name;
+                if (image) {
+                    imageElement = document.createElement('img');
+                    imageElement.src = image;
+                    element.appendChild(imageElement);
+                }
+                element.onclick = onclick;
+                document.getElementById('header').appendChild(element);
+            }
+            headerItem('About')
+            username = getCookie("username")
+            if (username) {
+                url = await fetchUserProfile(username);
+                headerItem(username, image=url);
+            } else {
+                url = await fetchUserProfile('default');
+                headerItem('default', image=url);
+            }
+        }
+
+        async function fetchUserProfile(username) {
+            const response = await fetch(`/api/profile/${username}`);
+            const data = await response.json();
+            return data.image;
+        }
+
         async function login() {
-            const response = await fetch('/login', {
+            const response = await fetch('/api/login', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -36,6 +67,7 @@
             if (data.success) {
                 setCookie("session", data.session, 7);
                 setCookie("username", data.username, 7);
+                await updateHeader();
             } else {
                 console.error(data.error);
                 alert('Invalid username or password');
@@ -64,5 +96,7 @@
             }
             return null;
         }
+    
+        updateHeader();
     </script>
 </html>
