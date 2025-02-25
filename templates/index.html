@@ -21,6 +21,13 @@
         </div>
     </body>
     <script>
+        async function updatePage() {
+            if (getCookie("session")) {
+                document.getElementById('login').style.display = 'none';
+            }
+            await updateHeader();
+        }
+        
         async function updateHeader() {
             function headerItem(name, onclick=null, image=null) {
                 element = document.createElement('div');
@@ -46,7 +53,7 @@
         }
 
         async function fetchUserProfile(username) {
-            const response = await fetch(`/api/profile/${username}`);
+            const response = await fetch(`/api/profile/${username}/image`);
             const data = await response.json();
             return data.image;
         }
@@ -67,7 +74,7 @@
             if (data.success) {
                 setCookie("session", data.session, 7);
                 setCookie("username", data.username, 7);
-                await updateHeader();
+                await updatePage();
             } else {
                 console.error(data.error);
                 alert('Invalid username or password');
@@ -97,6 +104,6 @@
             return null;
         }
     
-        updateHeader();
+        updatePage();
     </script>
 </html>
