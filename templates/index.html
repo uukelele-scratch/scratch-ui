@@ -49,10 +49,10 @@
             username = getCookie("username")
             if (username) {
                 url = await fetchUserProfile(username);
-                headerItem(username, image=url, classList=['header-item-username']);
+                headerItem(username, null, url, ['header-item-username']);
             } else {
                 url = await fetchUserProfile('default');
-                headerItem('Not Logged In', image=url, classList=['header-item-username']);
+                headerItem('Not Logged In', null, url, ['header-item-username']);
             }
         }
 
