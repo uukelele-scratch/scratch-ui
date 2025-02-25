@@ -27,11 +27,15 @@
             }
             await updateHeader();
         }
-        
+
         async function updateHeader() {
-            function headerItem(name, onclick=null, image=null) {
+            document.getElementById('header').innerHTML = '';
+            function headerItem(name, onclick=null, image=null, classList=null) {
                 element = document.createElement('div');
                 element.classList.add('header-item');
+                if (classList) {
+                    classList.forEach((c) => element.classList.add(c));
+                }
                 element.innerText = name;
                 if (image) {
                     imageElement = document.createElement('img');
@@ -45,10 +49,10 @@
             username = getCookie("username")
             if (username) {
                 url = await fetchUserProfile(username);
-                headerItem(username, image=url);
+                headerItem(username, image=url, classList=['header-item-username']);
             } else {
                 url = await fetchUserProfile('default');
-                headerItem('default', image=url);
+                headerItem('Not Logged In', image=url, classList=['header-item-username']);
             }
         }
 
