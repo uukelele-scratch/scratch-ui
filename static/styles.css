@@ -21,6 +21,7 @@ body {
     padding: 0px;
     font-family: 'Montserrat', sans-serif;
     background-color: var(--background-color);
+    background-image: url('/static/background.jpg');
     color: var(--text-color);
 }
 
