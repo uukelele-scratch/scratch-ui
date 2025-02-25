@@ -71,6 +71,15 @@ input[type="password"]:focus {
     z-index:1000;
 }
 
+.header-item {
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    border-radius:50px;
+    padding:15px;
+    margin:20px;
+}
+
 .header-item-username {
     position:absolute;
     right:42px;
