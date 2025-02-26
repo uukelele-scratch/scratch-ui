@@ -5,7 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/static/styles.css">
 </head>
-<body></body>
+<body>
+    <div id="content"><div id="overlay"><div id="response></div></div></div>
+</body>
 <script src="/static/script.js"></script>
 <script>
     async function updateUserData() {
@@ -22,12 +24,24 @@
         const response = await fetch(`/api/user/${username}`);
         const data = await response.json();
         if (data.success == true) {
-            document.getElementById("content").innerHTML = `
+            /*
+                username
+                id
+                join_date
+                country
+                about
+                wiwo
+                admin
+                image
+            */
+            document.getElementById("content").style.background = `url(${data["image"]})`;
+            document.getElementById("response").innerHTML = `
                 <h1>${data["username"]}</h1>
                 <p>${data}</p>
-            `; // This is just for testing purposes, once we know it works we can actually display it properly
+            `;
         } else {
-            document.getElementById("content").innerHTML = `
+            document.getElementById("content").style.background = "#fff";
+            document.getElementById("response").innerHTML = `
                 <h1>${data.error}</h1>
             `;
         }

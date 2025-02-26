@@ -43,6 +43,7 @@ def user_info(username):
             "about": user.about_me,
             "wiwo": user.wiwo,
             "admin": user.scratchteam,
+            "image": user.icon_url,
         }
         return jsonify(user_dict)
 

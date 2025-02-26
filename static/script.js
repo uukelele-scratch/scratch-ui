@@ -4,11 +4,6 @@ async function updatePage() {
         header.id = 'header';
         document.body.insertBefore(header, document.body.firstChild);
     }
-    if (document.getElementById('content') == null) {
-        content = document.createElement('div');
-        content.id = 'content';
-        document.body.appendChild(content);
-    }
     document.title = "ScratchUI";
     if (getCookie("session")) {
         try { document.getElementById('login').style.display = 'none'; } catch (e) {}
@@ -45,7 +40,7 @@ async function updateHeader() {
 }
 
 async function fetchUserProfile(username) {
-    const response = await fetch(`/api/user/${username}/image`);
+    const response = await fetch(`/api/user/${username}`);
     const data = await response.json();
     return data.image;
 }
