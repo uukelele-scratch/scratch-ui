@@ -22,7 +22,7 @@
         } else {
             method = "GET";
         }
-        const response = await fetch(`/api/users/${username}`);
+        const response = await fetch(`/api/user/${username}`);
         const data = await response.json();
         if (data.success == true) {
             document.getElementById("content").innerHTML = `

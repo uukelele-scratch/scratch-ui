@@ -3,10 +3,9 @@
     --primary-color: #007BFF;
     --header-color: #57a8ff;
     --secondary-color: #0056b3;
-    --light-blue: #66b2ff;
-    --dark-blue: #004085;
-    --background-color: #e9f2ff;
-    --text-color: #333;
+    --background-color: #b6d4ff;
+    --text-color: #000277;
+    --secondary-text-color: #ddf0ff;
     --border-color: #ccc;
 }
 
@@ -27,7 +26,7 @@ body {
 
 button {
     background-color: var(--primary-color);
-    color: #fff;
+    color: var(--secondary-text-color);
     border: none;
     padding: 10px 20px;
     border-radius: 5px;
