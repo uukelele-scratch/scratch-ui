@@ -119,9 +119,9 @@ input[type="password"]:focus {
     background: url('/static/loading.webp') no-repeat center;
     backdrop-filter:blur(10px);
     position: fixed;
-    transition: background-image 0.5s;
+    transition: all 0.5s ease;
     background-size: contain;
-	background-repeat: repeat;
+	background-repeat: no-repeat;
 	background-position: center;
 }
 
