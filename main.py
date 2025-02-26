@@ -20,7 +20,7 @@ def login():
         return jsonify({'success': False, 'error': 'Login failed'}), 401
     return jsonify({'success': True, 'session': session.id, 'username': session.username})
 
-@app.route('/api/profile/<username>/image')
+@app.route('/api/user/<username>/image')
 def profile(username):
     try:
         profile = sa.get_user(username)
@@ -29,5 +29,24 @@ def profile(username):
         return jsonify({'success': False, 'error': 'Profile not found'}), 404
 
     return jsonify({'success': True, 'image': image_url})
+
+@app.route('/api/user/<username>')
+def user_info(username):
+    try:
+        user = sa.get_user(username)
+        user_dict = {
+            "success": True,
+            "username": user.username,
+            "id": user.id,
+            "join_date": user.join_date,
+            "country": user.country,
+            "about": user.about_me,
+            "wiwo": user.wiwo,
+            "admin": user.scratchteam,
+        }
+        return jsonify(user_dict)
+
+    except sa.utils.exceptions.UserNotFound:
+        return jsonify({'success': False, 'error': f'{username} does not exist.'}), 404
 
 app.run(debug=True, host='0.0.0.0', port=8080)

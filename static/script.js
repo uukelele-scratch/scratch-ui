@@ -39,7 +39,7 @@ async function updateHeader() {
 }
 
 async function fetchUserProfile(username) {
-    const response = await fetch(`/api/profile/${username}/image`);
+    const response = await fetch(`/api/user/${username}/image`);
     const data = await response.json();
     return data.image;
 }
