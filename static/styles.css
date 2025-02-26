@@ -116,7 +116,9 @@ input[type="password"]:focus {
     width:80%;
     border-radius:20px;
     box-shadow:rgba(0, 0, 0, 0.3) 0px 0px 15px;
-    background: url('/static/loading.webp');
+    background: url('/static/loading.webp') no-repeat center;
+    backdrop-filter:blur(10px);
+    position: fixed;
 }
 
 .alert {
