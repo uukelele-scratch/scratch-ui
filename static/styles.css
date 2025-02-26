@@ -119,6 +119,29 @@ input[type="password"]:focus {
     background: url('/static/loading.webp') no-repeat center;
     backdrop-filter:blur(10px);
     position: fixed;
+    transition: background-image 0.5s;
+    background-size: contain;
+	background-repeat: repeat;
+	background-position: center;
+}
+
+#overlay {
+    position: absolute;
+	top:0;
+	left:0;
+	right:0;
+	bottom:0;
+	background-color:rgba(0, 0, 0, 0.3);
+	backdrop-filter: blur(10px);
+	box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.8);
+	border-radius:inherit;
+}
+
+#response-container {
+    color:white;
+    font-size:2.5vh;
+    position: relative;
+    overflow:none;
 }
 
 .alert {
