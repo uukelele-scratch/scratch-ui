@@ -1,4 +1,15 @@
 async function updatePage() {
+    if (document.getElementById('header') == null) {
+        header = document.createElement('div');
+        header.id = 'header';
+        document.body.insertBefore(header, document.body.firstChild);
+    }
+    if (document.getElementById('content') == null) {
+        content = document.createElement('div');
+        content.id = 'content';
+        document.body.appendChild(content);
+    }
+    document.title = "ScratchUI";
     if (getCookie("session")) {
         try { document.getElementById('login').style.display = 'none'; } catch (e) {}
     }
@@ -6,11 +17,6 @@ async function updatePage() {
 }
 
 async function updateHeader() {
-    if (document.getElementById('header') == null) {
-        header = document.createElement('div');
-        header.id = 'header';
-        document.body.insertBefore(header, document.body.firstChild);
-    }
     document.getElementById('header').innerHTML = '';
     function headerItem(name, onclick=null, image=null, classList=null) {
         element = document.createElement('div');
