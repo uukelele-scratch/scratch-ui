@@ -120,7 +120,7 @@ input[type="password"]:focus {
     backdrop-filter:blur(10px);
     position: fixed;
     transition: all 0.5s ease;
-    background-size: contain;
+    background-size: cover;
 	background-repeat: no-repeat;
 	background-position: center;
 }
@@ -137,7 +137,7 @@ input[type="password"]:focus {
 	border-radius:inherit;
 }
 
-#response-container {
+#response {
     color:white;
     font-size:2.5vh;
     position: relative;
