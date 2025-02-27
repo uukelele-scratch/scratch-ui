@@ -112,8 +112,8 @@ input[type="password"]:focus {
     justify-content: center;
     align-items: center;
     padding:20px;
-    height: 80%;
-    width:80%;
+    height: 80vh;
+    width:80vh;
     border-radius:20px;
     box-shadow:rgba(0, 0, 0, 0.3) 0px 0px 15px;
     background: url('/static/loading.webp') no-repeat center;
@@ -142,6 +142,7 @@ input[type="password"]:focus {
     font-size:2.5vh;
     position: relative;
     overflow:none;
+    padding:20px;
 }
 
 .profile {
@@ -170,7 +171,7 @@ input[type="password"]:focus {
     border-radius: 15px;
     margin-left: 50px;
     margin-right: 50px;
-    padding: 30px;
+    padding: 20px;
 }
 
 .unread {
