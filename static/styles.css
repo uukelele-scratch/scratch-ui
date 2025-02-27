@@ -97,6 +97,14 @@ input[type="password"]:focus {
     margin-right:0;
 }
 
+#content {
+    width:100%;
+    height: calc(100vh - 64px);
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+
 #login {
     background: rgba(255, 255, 255, 0.4);
     backdrop-filter:blur(50px);
