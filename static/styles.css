@@ -144,6 +144,70 @@ input[type="password"]:focus {
     overflow:none;
 }
 
+.profile {
+    position: absolute;
+    left: 30px;
+    top: 30px;
+    border-radius:8px;
+}
+
+.username {
+    position: absolute;
+    left: 104px;
+    top: 10px;
+    font-size: 24px;
+}
+
+.label {
+    position: absolute;
+    top: 50px;
+    left: 104px;
+    font-size:15px;
+}
+
+.text-box {
+    background-color: rgba(0, 170, 255, 0.5);
+    border-radius: 15px;
+    margin-left: 50px;
+    margin-right: 50px;
+    padding: 30px;
+}
+
+.unread {
+    display: block;
+    position: absolute;
+    right: -0.5rem;
+    top: -1.7rem;
+    border-radius:1rem;
+    background-color:hsl(38, 100%, 55%);
+    padding-top:0.25rem;
+    padding-right:0.25rem;
+    padding-bottom:0.25rem;
+    padding-left:0.25rem;
+    text-indent:0;
+    line-height:1rem;
+    color:#fff;
+    font-size:1rem;
+    font-weight:bold;
+}
+
+.unread-container {
+    position:absolute;
+    right:25px;
+    background-image:url('https://scratch.mit.edu/images/nav-notifications.png');
+    background-color:hsl(260,60%,60%);
+    border-radius:5px;
+    height:46px;
+    width:62px;
+    background-repeat:no-repeat;
+    background-position:center;
+}
+
+.about {
+    position: relative;
+    margin-top: 100px;
+}
+
 .alert {
     position:fixed;
     width:500px;

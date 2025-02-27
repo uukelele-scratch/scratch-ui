@@ -43,7 +43,9 @@ def user_info(username):
             "about": user.about_me,
             "wiwo": user.wiwo,
             "admin": user.scratchteam,
+            "new_scratcher": "New Scratcher" if user.is_new_scratcher() else "Scratcher",
             "image": user.icon_url,
+            "messages": user.message_count()
         }
         return jsonify(user_dict)
 
