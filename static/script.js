@@ -7,7 +7,7 @@ async function updatePage() {
     if (document.getElementById("content") == null) {
         content = document.createElement('div')
         content.id = 'content';
-        document.appendChild(content)
+        document.body.appendChild(content)
     }
     document.title = "ScratchUI";
     if (getCookie("session")) {
