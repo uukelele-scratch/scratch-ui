@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="/static/styles.css">
 </head>
 <body>
-    <div id="content"><div id="overlay"><div id="response"></div></div></div>
+    <div id="content><div id="background-display"><div id="overlay"><div id="response"></div></div></div></div>
 </body>
 <script src="/static/script.js"></script>
 <script>
@@ -36,7 +36,7 @@
                 image,
                 messages
             */
-            document.getElementById("content").style.backgroundImage = `url(${data["image"]})`;
+            document.getElementById("background-display").style.backgroundImage = `url(${data["image"]})`;
             document.getElementById("response").innerHTML = `
                 <br>
                 <img class="profile" src="${data["image"]}" width="64px" height="64px"></img>
@@ -47,7 +47,7 @@
                 <p class="wiwo">What I'm working on: </p><div class="text-box">${data.wiwo}</div>
             `;
         } else {
-            document.getElementById("content").style.background = "#fff";
+            document.getElementById("background-display").style.background = "#fff";
             document.getElementById("response").innerHTML = `
                 <h1>${data.error}</h1>
             `;

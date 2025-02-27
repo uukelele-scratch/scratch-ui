@@ -107,7 +107,7 @@ input[type="password"]:focus {
     border-radius: 10px;
 }
 
-#content {
+#background-display {
     display: flex;
     justify-content: center;
     align-items: center;
