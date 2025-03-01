@@ -30,7 +30,7 @@ def news():
         session = sa.login_by_id(token)
     except sa.utils.exceptions.LoginFailure:
         return login_failure()
-    return jsonify({'success': True, 'feed': session.feed(limit=20, offset=0).__dict__})
+    return jsonify({'success': True, 'feed': [item.__dict__ for item in session.feed(limit=20, offset=0)]})
 
 @app.route('/api/user/<username>/image')
 def profile(username):
