@@ -17,4 +17,23 @@
         </div>
     </body>
     <script src="/static/script.js"></script>
+    <script>
+        async function get_feed() {
+            token = getCookie("session");
+            if (!token) {
+                return;
+            }
+            const response = await fetch('/api/feed', {
+                method: 'GET',
+                headers: {
+                    'X-Session-Token': token
+                }
+            });
+            const data = await response.json();
+            if (!data.success) {
+                return;
+            }
+            console.log(data.feed)
+        }
+    </script>
 </html>
