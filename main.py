@@ -3,6 +3,9 @@ import scratchattach as sa
 
 app = Flask(__name__)
 
+def login_failure():
+    return jsonify({'success': False, 'error': 'Login failed'}), 401
+
 @app.route('/')
 def index():
     return render_template('index.html')
@@ -17,8 +20,17 @@ def login():
     try:
         session = sa.login(body['username'], body['password'])
     except sa.utils.exceptions.LoginFailure:
-        return jsonify({'success': False, 'error': 'Login failed'}), 401
+        return login_failure()
     return jsonify({'success': True, 'session': session.id, 'username': session.username})
+
+@app.route('/api/feed')
+def news():
+    token = request.headers.get("X-Session-Token")
+    try:
+        session = sa.login_by_id(token)
+    except sa.utils.exceptions.LoginFailure:
+        return login_failure()
+    return jsonify({'success': True, 'feed': session.feed(limit=20, offset=0)})
 
 @app.route('/api/user/<username>/image')
 def profile(username):
